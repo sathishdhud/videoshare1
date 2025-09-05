@@ -13,12 +13,23 @@ import {
   StatusBar,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 export default function App() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleBack = () => {
+    router.back();
+  };
+
+  const handleRegister = () => {
+    if (password && confirmPassword && password === confirmPassword) {
+      router.push("/OTPverify");
+    }
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -30,7 +41,7 @@ export default function App() {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
             {/* Back Button */}
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity style={styles.backButton} onPress={handleBack}>
               <Ionicons name="chevron-back" size={24} color="black" />
               <Text style={styles.backText}>Back</Text>
             </TouchableOpacity>
@@ -91,7 +102,7 @@ export default function App() {
               </Text>
 
               {/* Register Button */}
-              <TouchableOpacity style={styles.registerButton}>
+              <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
                 <Text style={styles.registerText}>Register</Text>
               </TouchableOpacity>
             </View>

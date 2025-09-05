@@ -13,6 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Modal from "react-native-modal";
+import { router } from "expo-router";
 
 const AVATAR_SIZE = 120;
 const CAM_SIZE = 36;
@@ -41,6 +42,10 @@ export default function ProfileScreen() {
 
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]); // default Bangladesh
   const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleBack = () => {
+    router.back();
+  };
 
   const handleSave = () => {
     console.log({
@@ -84,7 +89,7 @@ export default function ProfileScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity style={styles.backHit}>
+          <TouchableOpacity style={styles.backHit} onPress={handleBack}>
             <Ionicons name="chevron-back" size={24} color="#333" />
             <Text style={styles.backText}>Back</Text>
           </TouchableOpacity>

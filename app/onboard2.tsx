@@ -1,12 +1,23 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons"; // for arrow icon
+import { router } from "expo-router";
 
 export default function App() {
+  const handleNext = () => {
+    router.push("/onboard3");
+  };
+
+  const handleSkip = () => {
+    router.push("/welcomePage");
+  };
+
   return (
     <View style={styles.container}>
       {/* Skip button */}
-      <Text style={styles.skip}>Skip</Text>
+      <TouchableOpacity onPress={handleSkip}>
+        <Text style={styles.skip}>Skip</Text>
+      </TouchableOpacity>
 
       {/* Illustration (local image from assets) */}
       <Image
@@ -25,7 +36,7 @@ export default function App() {
       </Text>
 
       {/* Circular Button with arrow icon */}
-      <TouchableOpacity style={styles.nextButton}>
+      <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
         <AntDesign name="arrowright" size={24} color="#fff" />
       </TouchableOpacity>
     </View>

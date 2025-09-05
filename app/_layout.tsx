@@ -9,8 +9,19 @@ export default function RootLayout() {
   return (
     <>
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
         <Stack.Screen name="onboard" />
         <Stack.Screen name="onboard2" />
+        <Stack.Screen name="onboard3" />
+        <Stack.Screen name="welcomePage" />
+        <Stack.Screen name="signupPage" />
+        <Stack.Screen name="setPassword" />
+        <Stack.Screen name="OTPverify" />
+        <Stack.Screen name="enableloc" />
+        <Stack.Screen name="Home" />
+        <Stack.Screen name="EditProfile" />
+        <Stack.Screen name="Notification" />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </>

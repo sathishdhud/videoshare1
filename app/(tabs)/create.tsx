@@ -12,6 +12,7 @@ import {
   Switch,
 } from 'react-native';
 import { ArrowLeft, X, ChevronRight, ChevronDown } from 'lucide-react-native';
+import { router } from 'expo-router';
 
 export default function CreateScreen() {
   const [title, setTitle] = useState('');
@@ -22,6 +23,16 @@ export default function CreateScreen() {
   const [instagramEnabled, setInstagramEnabled] = useState(true);
   const [showMusicSelector, setShowMusicSelector] = useState(false);
   const [selectedMusic, setSelectedMusic] = useState('');
+
+  const handleBack = () => {
+    router.back();
+  };
+
+  const handlePost = () => {
+    // Handle post logic here
+    alert('Post created successfully!');
+    router.back();
+  };
 
   const musicTracks = [
     {
@@ -63,7 +74,7 @@ export default function CreateScreen() {
         
         {/* Music Selector Header */}
         <View style={styles.musicHeader}>
-          <TouchableOpacity onPress={() => setShowMusicSelector(false)}>
+          <TouchableOpacity onPress={() => setShowMusicSelector(false)} style={{ flexDirection: 'row', alignItems: 'center' }}>
             <ArrowLeft size={24} color="#333" strokeWidth={2} />
           </TouchableOpacity>
           <Text style={styles.musicTitle}>Add audio</Text>
@@ -133,7 +144,7 @@ export default function CreateScreen() {
       
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleBack} style={{ flexDirection: 'row', alignItems: 'center' }}>
           <ArrowLeft size={24} color="#333" strokeWidth={2} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Post on social</Text>
@@ -278,7 +289,7 @@ export default function CreateScreen() {
           <TouchableOpacity style={styles.saveDraftButton}>
             <Text style={styles.saveDraftText}>💾 Save draft</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.postButton}>
+          <TouchableOpacity style={styles.postButton} onPress={handlePost}>
             <Text style={styles.postButtonText}>📤 Post on social</Text>
           </TouchableOpacity>
         </View>

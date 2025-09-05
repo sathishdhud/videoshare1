@@ -5,11 +5,11 @@ import { router } from "expo-router"; // Import Expo Router
 
 export default function OnBoard1() {
   const handleNext = () => {
-    router.push("/board2.tsx"); // Navigate to board2
+    router.push("/onboard2"); // Navigate to onboard2
   };
 
   const handleSkip = () => {
-    router.push("/board2"); // Skip to board2
+    router.push("/welcomePage"); // Skip to welcome page
   };
 
   return (

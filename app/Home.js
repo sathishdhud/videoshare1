@@ -10,11 +10,16 @@ import {
 import Svg, { Path } from "react-native-svg";
 import { Ionicons, Feather, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
 export default function App() {
   const [selectedTab, setSelectedTab] = useState("Transport");
+
+  const handleProfilePress = () => {
+    router.push("/(tabs)/profile");
+  };
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
@@ -194,7 +199,7 @@ export default function App() {
           <MaterialIcons name="local-offer" size={24} color="#333" />
           <Text style={styles.navText}>Offer</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity style={styles.navItem} onPress={handleProfilePress}>
           <Ionicons name="person-outline" size={24} color="#333" />
           <Text style={styles.navText}>Profile</Text>
         </TouchableOpacity>

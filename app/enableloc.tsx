@@ -17,6 +17,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
+import { router } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
@@ -117,6 +118,15 @@ export default function App() {
     }
   };
 
+  const handleSkip = () => {
+    router.push("/(tabs)");
+  };
+
+  const handleConfirmLocation = () => {
+    setModalVisible(false);
+    router.push("/(tabs)");
+  };
+
   const renderLocationDetails = () => {
     if (!locationDetails) return null;
     
@@ -209,7 +219,7 @@ export default function App() {
         
         <TouchableOpacity 
           style={styles.confirmButton}
-          onPress={() => setModalVisible(false)}
+          onPress={handleConfirmLocation}
         >
           <Text style={styles.confirmButtonText}>Confirm Location</Text>
         </TouchableOpacity>
@@ -272,7 +282,7 @@ export default function App() {
             )}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.6}>
+        <TouchableOpacity activeOpacity={0.6} onPress={handleSkip}>
           <Text style={styles.skip}>Skip for now</Text>
         </TouchableOpacity>
       </Animated.View>

@@ -1,8 +1,14 @@
 import { Tabs } from 'expo-router';
 import { Chrome as Home, Search, Plus, Users, User } from 'lucide-react-native';
 import { View, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
 
 export default function TabLayout() {
+  const handleCreatePress = () => {
+    // You can add any logic here before navigation
+    router.push('/create');
+  };
+
   return (
     <Tabs
       screenOptions={{
@@ -41,7 +47,7 @@ export default function TabLayout() {
         options={{
           title: '',
           tabBarIcon: ({ size }) => (
-            <View style={styles.createButton}>
+            <View style={styles.createButton} onTouchEnd={handleCreatePress}>
               <Plus size={24} color="white" strokeWidth={2} />
             </View>
           ),

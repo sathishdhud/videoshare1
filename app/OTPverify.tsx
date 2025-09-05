@@ -7,9 +7,14 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 export default function OTPInputScreen() {
   const [otp, setOtp] = useState(["", "", "", ""]);
+
+  const handleBack = () => {
+    router.back();
+  };
 
   // Get index of first empty slot
   const getEmptyIndex = (otpArray) => otpArray.findIndex((val) => val === "");
@@ -36,17 +41,18 @@ export default function OTPInputScreen() {
   // Handle Verify button press
   const handleVerify = () => {
     const code = otp.join("");
-    console.log("Entered OTP:", code);
-    alert(`OTP Entered: ${code}`);
+    if (code.length === 4) {
+      router.push("/enableloc");
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
+      <TouchableOpacity style={styles.header} onPress={handleBack}>
         <Ionicons name="chevron-back" size={28} color="#000" />
         <Text style={styles.headerText}>Back</Text>
-      </View>
+      </TouchableOpacity>
 
       {/* Title */}
       <Text style={styles.title}>Phone verification</Text>

@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 const countries = [
   { code: "+91", name: "India", flag: "https://flagcdn.com/w20/in.png" },
@@ -33,15 +34,29 @@ export default function App() {
   const [genderModal, setGenderModal] = useState(false);
   const [accepted, setAccepted] = useState(false);
 
+  const handleBack = () => {
+    router.back();
+  };
+
+  const handleSignUp = () => {
+    if (accepted) {
+      router.push("/setPassword");
+    }
+  };
+
+  const handleSignIn = () => {
+    router.push("/(tabs)");
+  };
+
   return (
     <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
       <ScrollView contentContainerStyle={styles.scroll}>
         
         {/* Back */}
-        <View style={styles.header}>
+        <TouchableOpacity style={styles.header} onPress={handleBack}>
           <Ionicons name="chevron-back" size={22} color="#000" />
           <Text style={styles.backText}>Back</Text>
-        </View>
+        </TouchableOpacity>
         
         {/* Title */}
         <Text style={styles.title}>Sign up with your email or{"\n"}phone number</Text>
@@ -110,6 +125,7 @@ export default function App() {
         <TouchableOpacity
           style={[styles.signupBtn, !accepted && {backgroundColor:"#ccc"}]}
           disabled={!accepted}
+          onPress={handleSignUp}
         >
           <Text style={styles.signupText}>Sign Up</Text>
         </TouchableOpacity>
@@ -145,7 +161,7 @@ export default function App() {
         
         {/* Footer */}
         <Text style={styles.footer}>
-          Already have an account? <Text style={styles.signIn}>Sign in</Text>
+          Already have an account? <Text style={styles.signIn} onPress={handleSignIn}>Sign in</Text>
         </Text>
       </ScrollView>
       

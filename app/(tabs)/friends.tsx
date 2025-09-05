@@ -14,6 +14,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { ArrowLeft, Search, Menu, X } from 'lucide-react-native';
+import { router } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 const isIOS = Platform.OS === 'ios';
@@ -40,6 +41,10 @@ export default function FriendsScreen() {
   const [currentView, setCurrentView] = useState<'list' | 'profile' | 'userProfile'>('list');
   const [selectedUser, setSelectedUser] = useState<Friend | null>(null);
   
+  const handleBackToTabs = () => {
+    router.back();
+  };
+
   const followingList: Friend[] = [
     {
       id: '1',
@@ -170,7 +175,7 @@ export default function FriendsScreen() {
         >
           {/* Profile Header */}
           <View style={styles.profileHeader}>
-            <TouchableOpacity onPress={() => setCurrentView('list')}>
+            <TouchableOpacity onPress={() => setCurrentView('list')} style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Ionicons name="arrow-back-outline" size={24} color="#FFFFFF" />
             </TouchableOpacity>
             <TouchableOpacity>

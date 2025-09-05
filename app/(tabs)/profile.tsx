@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 const isIOS = Platform.OS === 'ios';
@@ -28,6 +29,14 @@ interface VideoItem {
 export default function ProfileScreen() {
   const [activeTab, setActiveTab] = useState('videos');
   
+  const handleEditProfile = () => {
+    router.push('/EditProfile');
+  };
+
+  const handleNotifications = () => {
+    router.push('/Notification');
+  };
+
   const userVideos: VideoItem[] = [
     {
       id: '1',
@@ -118,13 +127,13 @@ export default function ProfileScreen() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity style={styles.headerButton}>
+          <TouchableOpacity style={styles.headerButton} onPress={handleNotifications}>
             <Ionicons name="menu-outline" size={24} color="#E0E0E0" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.headerButton}>
             <Ionicons name="person-add-outline" size={24} color="#E0E0E0" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.editProfileButton}>
+          <TouchableOpacity style={styles.editProfileButton} onPress={handleEditProfile}>
             <Ionicons name="create-outline" size={20} color="#E0E0E0" />
           </TouchableOpacity>
         </View>

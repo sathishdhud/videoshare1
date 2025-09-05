@@ -5,15 +5,11 @@ import { router } from "expo-router";
 
 export default function Onboard2() {
   const handleNext = () => {
-    // Navigate to the next screen (e.g., home screen)
-    // router.push("/home"); 
-    // For now, let's just go back to the first screen for demonstration
-    router.push("/onboard");
+    router.push("/welcomePage");
   };
 
   const handleSkip = () => {
-    // Same as above
-    router.push("/onboard");
+    router.push("/welcomePage");
   };
 
   return (

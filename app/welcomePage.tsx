@@ -7,13 +7,22 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
+import { router } from "expo-router";
 
 export default function App() {
+  const handleCreateAccount = () => {
+    router.push("/signupPage");
+  };
+
+  const handleLogin = () => {
+    router.push("/(tabs)"); // Navigate directly to main app
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Illustration */}
       <Image
-        source={require("./assets/image.png")} // 👈 put your illustration here
+        source={require("../assets/images/image.png")}
         style={styles.image}
         resizeMode="contain"
       />
@@ -26,10 +35,10 @@ export default function App() {
       
       {/* Buttons */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.createButton}>
+        <TouchableOpacity style={styles.createButton} onPress={handleCreateAccount}>
           <Text style={styles.createButtonText}>Create an account</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
       </View>

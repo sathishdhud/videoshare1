@@ -9,6 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 const notifications = {
   today: [
@@ -24,12 +25,16 @@ const notifications = {
 };
 
 export default function NotificationScreen() {
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity style={styles.backBtn}>
+          <TouchableOpacity style={styles.backBtn} onPress={handleBack}>
             <Ionicons name="chevron-back" size={24} color="#000" />
             <Text style={styles.backText}>Back</Text>
           </TouchableOpacity>
